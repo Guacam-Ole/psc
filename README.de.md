@@ -1,4 +1,4 @@
-# psc
+# pscxx
 Kleines Script zum auslesen von PSC-Dateien in Wordpress
 
 # Warnung
