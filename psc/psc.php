@@ -11,7 +11,7 @@
 
  /*
  Usage:   [PSC]url[/PSC]
- Example: [PSC]http://cdn.podseed.org/blathering/blathering_011.psc[/PSC]
+ Example: [PSC]http://cdn.podseed.org/blathering/blathering_009.psc[/PSC]
  */
 
  $pscClass="entry-meta";
@@ -41,6 +41,7 @@ function replace_psc($post_id, $post ) {
 }
 
 function read_psc($feed_url) {
+    try {
     global $pscClass;
     global $pscHeader;
     global $pscUrlsOnly;
@@ -61,14 +62,26 @@ function read_psc($feed_url) {
 
         if (!$pscUrlsOnly  || isset($url)) {
 	        $hasContent=true;
-    		$tmpContent.=("<div class='pscContent'>".$start." <a href='".$url."'>".$title."</a></div>");
+    		$tmpContent.=("<div class='pscContent'>".$start);
+    		if (isset($url)) {
+    		    $tmpContent.=(" <a href='".$url."'>".$title."</a>");
+    		} else {
+    		   $tmpContent.=(" ".$title);
+    		}
+    		$tmpContent.="</div>";
     	}
     }
     $tmpContent.= "</br></br></div>";
     if ($hasContent) {
         return $tmpContent;
+    } else {
+        return "<!-- PSC: no content or no url -->";
     }
     return null;
+    } catch(Exception $e) {
+
+        return "PSC-ERROR:". $e->getMessage();
+    }
 }
 
 
