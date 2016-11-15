@@ -1,3 +1,5 @@
 # psc
-[Deutsch](README.de.md)
-[Englisch](README.en.md)
+Deutsche Anleitung:[Readme Deutsch](README.de.md)
+
+
+Englische Anleitung: [Readme Englisch](README.en.md)
