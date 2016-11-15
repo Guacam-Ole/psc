@@ -1,4 +1,4 @@
-# pscxx
+# psc-Importer für Wordpress
 Kleines Script zum auslesen von PSC-Dateien in Wordpress
 
 # Warnung
