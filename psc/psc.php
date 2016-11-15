@@ -10,7 +10,8 @@
  */
 
  /*
- Usage: [PSC]http://cdn.podseed.org/blathering/blathering_011.psc[/PSC]
+ Usage:   [PSC]url[/PSC]
+ Example: [PSC]http://cdn.podseed.org/blathering/blathering_011.psc[/PSC]
  */
 
  $pscClass="entry-meta";
@@ -32,7 +33,7 @@ function replace_psc($post_id, $post ) {
     $pscEnd=strpos($content,"[/PSC]");
     if ($pscStart>=0 && $pscEnd>$pscStart) {
         $filename=substr($content,$pscStart+5, $pscEnd-$pscStart-5);
-        $content=str_replace("[PSC]".$filename."[/PSC]",read_psc($filename),$content);
+        $content=str_replace("[PSC]".$filename."[/PSC]","<!-- PSC-File:".$filename." -->".read_psc($filename),$content);
         remove_action('save_post', 'replace_psc');
         wp_update_post(array('ID' => $post_id, 'post_content' => $content));
         add_action('save_post', 'replace_psc');
