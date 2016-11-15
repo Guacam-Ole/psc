@@ -1,4 +1,4 @@
-# psc
+# psc-Import for Wordpress
 Deutsche Anleitung:[Readme Deutsch](README.de.md)
 
 
