@@ -8,11 +8,6 @@ Benutzung auf eigene Gefahr! Keine Garantie für Schäden, verlorene Beiträge, 
 Es liest eine beliebige PSC (Podlove simple Chapter) - Datei ein und zeigt sie im Wordpress-Beitrag an
 
 ### Installation
-#### Evil
-Einfach den Code in die `functions.php` des aktuellen Themes kopieren.
-(Nicht empfohlen. Bei jedem Update des Themes ist die Änderung weg)
-
-#### Empfohlen
 1. Kopiere den psc-Ordner nach wp-content/plugins
 2. Activiere das Plugin
 
