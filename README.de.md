@@ -9,7 +9,7 @@ Es liest eine beliebige PSC (Podlove simple Chapter) - Datei ein und zeigt sie i
 
 ### Installation
 1. Kopiere den psc-Ordner nach wp-content/plugins
-2. Activiere das Plugin
+2. Aktiviere das Plugin
 
 ### Konfiguration
 Es gibt drei Variablen im Code, die sich anpassen lassen:
