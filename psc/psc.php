@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: PSC Reader
- * Version: 0.0.1
+ * Version: 0.0.2
  * Plugin URI: https://github.com/OleAlbers/psc
  * Description: Reads informations from PSC (podlove simple chapters)-files and displays them as html-content
  * Author: Ole Albers
@@ -23,21 +23,27 @@
 /**
  * Add PSC-Content to current article
  */
+
 function replace_psc($post_id, $post ) {
+try {
+
     if (isset($post->post_status) && 'auto-draft' == $post->post_status) {
         return;
     }
-
     $content = $post->post_content;
     $pscStart=strpos($content,"[PSC]");
     $pscEnd=strpos($content,"[/PSC]");
-    if ($pscStart>=0 && $pscEnd>$pscStart) {
-        $filename=substr($content,$pscStart+5, $pscEnd-$pscStart-5);
+
+    if ($pscStart>=0 && $pscEnd>$pscStart) {      
+       $filename=substr($content,$pscStart+5, $pscEnd-$pscStart-5);
         $content=str_replace("[PSC]".$filename."[/PSC]","<!-- PSC-File:".$filename." -->".read_psc($filename),$content);
-        remove_action('save_post', 'replace_psc');
+ remove_action('save_post', 'replace_psc');
         wp_update_post(array('ID' => $post_id, 'post_content' => $content));
-        add_action('save_post', 'replace_psc');
     }
+}catch (Exception $e) {
+    error_log($e->getMessage());
+    echo 'Error: ',  $e->getMessage(), "\n";
+}
 }
 
 function read_psc($feed_url) {
@@ -80,6 +86,7 @@ function read_psc($feed_url) {
     return null;
     } catch(Exception $e) {
 
+	    error_log($e->getMessage());
         return "PSC-ERROR:". $e->getMessage();
     }
 }
